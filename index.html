@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Web Page</title>
+    <!-- Link css here -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="top-left">
+    <h1>DOOSAN & DEVELON</h1>
+</div>
+
+<div class="content">
+    <div class="images">
+        <img src="images/image1.png" alt="images" width="1950" height="900">
+        <img src="images/image2.png" alt="images" width="1950" height="900">
+        <img src="images/image3.png" alt="images" width="1950" height="900">
+    </div>
+    <div onclick="side_slide(-1)" class="slide left">
+        <span class="fa fa-angle-left"></span>
+    </div>
+    <div onclick="side_slide(1)" class="slide right">
+        <span class="fa fa-angle-right"></span>
+    </div>
+</div>
+
+<div class="btm-sliders">
+    <span onclick="btm_slide(1)"></span>
+    <span onclick="btm_slide(2)"></span>
+    <span onclick="btm_slide(3)"></span>
+</div>
+
+<script>
+    var indexValue = 1;
+    showImg(indexValue);
+
+    function btm_slide(e) {
+        showImg(indexValue = e);
+    }
+
+    function side_slide(e) {
+        showImg(indexValue + e);
+    }
+
+    function showImg(e) {
+        var i;
+        const img = document.querySelectorAll('.images img');
+        const sliders = document.querySelectorAll('.btm-sliders span');
+        const leftArrow = document.querySelector('.slide.left');
+        const rightArrow = document.querySelector('.slide.right');
+
+        if (e > img.length) {
+            indexValue = 1;
+        } else if (e < 1) {
+            indexValue = img.length;
+        } else {
+            indexValue = e;
+        }
+
+        for (i = 0; i < img.length; i++) {
+            img[i].style.display = "none";
+        }
+        for (i = 0; i < sliders.length; i++) {
+            sliders[i].style.background = "red";
+        }
+
+        img[indexValue - 1].style.display = "block";
+        sliders[indexValue - 1].style.background = "white";
+
+        // Show/hide arrows based on index
+        if (indexValue === 1) {
+            leftArrow.style.display = "none";
+        } else {
+            leftArrow.style.display = "block";
+        }
+        if (indexValue === img.length) {
+            rightArrow.style.display = "none";
+        } else {
+            rightArrow.style.display = "block";
+        }
+    }
+</script>
+
+
+<div class="langs">
+    <a href="#" Language="english">ENGLISH</a>
+    <a href="#" Language="russian">RUSSIAN</a>
+    <a href="#" Language="spanish">SPANISH</a>
+    <a href="#" Language="arabic">ARABIC</a>
+</div>
+
+<!-- Navigation Menu -->
+<nav>
+    <ul class="menu">
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+</body>
+</html>
